@@ -1,3 +1,4 @@
+#import logging
 from typing import (
     Optional,
     List
@@ -6,6 +7,8 @@ from products.models import (
     Product,
     Category
 )
+
+#logger = logging.getLogger(__name__)
 
 class ProductRepository:
     def create(self,
@@ -24,6 +27,7 @@ class ProductRepository:
         )
     
     def get_all(self) -> List[Product]:
+        #logger.info("Obteniendo todos los productos.")
         return Product.objects.all()
     
     def get_by_id(self,id) -> Optional[Product]:
@@ -45,3 +49,6 @@ class ProductRepository:
             self,
             category_id) -> List[Product]:
         return Product.objects.filter(category=category_id)
+    
+    def get_product_gte_stock(self,amount) -> List[Product]:
+        return Product.objects.filter(stock__gte=amount)
