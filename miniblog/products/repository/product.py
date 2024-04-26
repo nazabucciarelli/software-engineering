@@ -52,3 +52,7 @@ class ProductRepository:
     
     def get_product_gte_stock(self,amount) -> List[Product]:
         return Product.objects.filter(stock__gte=amount)
+    
+    def delete_product(self,id):
+        product = Product.objects.get(id=id)
+        return Product.delete(product)
