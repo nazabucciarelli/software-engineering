@@ -18,7 +18,6 @@ def product_list(request):
     )
 
 def product_create(request):
-    ...
 
 def product_detail(request,id):
     product = repository.get_by_id(id=id)
